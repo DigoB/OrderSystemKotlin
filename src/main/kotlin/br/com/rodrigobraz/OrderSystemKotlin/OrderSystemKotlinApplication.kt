@@ -18,7 +18,7 @@ class OrderSystemKotlinApplication : CommandLineRunner {
 
 		val cat1 = Category("Informática")
 		val cat2 = Category("Escritório")
-		categoryRepository!!.saveAll(Arrays.asList(cat1, cat2))
+		categoryRepository!!.saveAll(listOf(cat1, cat2))
 
 
 	}

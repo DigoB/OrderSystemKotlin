@@ -8,12 +8,19 @@ import org.springframework.stereotype.Service
 class CategoryService(private val repository: CategoryRepository) {
 
     fun create(category: Category): Category {
+        category.id?.let { findById(it) }
         return repository.save(category)
     }
 
-    fun findById(id: Int): Category? {
+    fun findById(id: Int): Category {
 
-        return repository.findById(id).orElseThrow()
+        val possibleCategory = repository.findById(id)
+        if (possibleCategory.isEmpty) throw IllegalStateException("Category not found")
+
+        val category = possibleCategory.get()
+        return category
+
+
     }
 
 
